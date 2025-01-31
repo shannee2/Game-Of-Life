@@ -1,12 +1,10 @@
 import org.junit.jupiter.api.Test;
-import org.swiggy.Cell;
 import org.swiggy.Grid;
 import org.swiggy.exceptions.InvalidGridSizeException;
 import org.swiggy.exceptions.InvalidSeedPercentageException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,14 +37,14 @@ public class GridTest {
     @Test
     public void testAllCellsDead_WhenUpdatingGrid_With1AliveCell() {
         Grid grid = new Grid(10, 10, 1);
-        grid.updateGrid();
+        grid.update();
         assertTrue(grid.areAllCellsDead());
     }
 
     @Test
     public void testAllCellsNotDead_WhenUpdatingGrid_WithAllAliveCells() {
         Grid grid = new Grid(10, 10, 100);
-        grid.updateGrid();
+        grid.update();
         assertFalse(grid.areAllCellsDead());
     }
 
@@ -68,7 +66,7 @@ public class GridTest {
     @Test
     public void testDisplayWhenAllCellsDead() {
         Grid grid = new Grid(2, 2, 25);
-        grid.updateGrid();
+        grid.update();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));

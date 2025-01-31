@@ -49,7 +49,7 @@ public class Grid {
         }
     }
 
-    public void updateGrid() {
+    public void update() {
         List<int[]> indexesToKill = new ArrayList<>();
         List<int[]> indexesToMakeAlive = new ArrayList<>();
 
@@ -108,5 +108,7 @@ public class Grid {
             }
             System.out.println();
         }
+        System.out.println("-------------------------------------------------");
+
     }
 }
