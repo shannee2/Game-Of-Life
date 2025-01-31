@@ -49,6 +49,47 @@ public class Grid {
         }
     }
 
+    public void updateGrid() {
+        List<int[]> indexesToKill = new ArrayList<>();
+        List<int[]> indexesToMakeAlive = new ArrayList<>();
+
+        for (int i = 0; i < cells.size(); i++) {
+            for (int j = 0; j < cells.get(i).size(); j++) {
+                int aliveNeighbours = getAliveNeighbours(i, j);
+                if(aliveNeighbours < 2 || aliveNeighbours > 3){
+                    indexesToKill.add(new int[]{i, j});
+                }else{
+                    indexesToMakeAlive.add(new int[]{i, j});
+                }
+            }
+        }
+
+        for (int[] index : indexesToKill) {
+            cells.get(index[0]).get(index[1]).kill();
+        }
+        for (int[] index : indexesToMakeAlive) {
+            cells.get(index[0]).get(index[1]).makeAlive();
+        }
+    }
+
+    private int getAliveNeighbours(int row, int col) {
+        int aliveNeighbours = 0;
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // Vertical and horizontal neighbors
+                {-1, -1}, {-1, 1}, {1, -1}, {1, 1} // Diagonal neighbors
+        };
+
+        for (int[] direction : directions) {
+            int newRow = row + direction[0];
+            int newCol = col + direction[1];
+            if (newRow >= 0 && newRow < cells.size() && newCol >= 0 && newCol < cells.get(newRow).size() && cells.get(newRow).get(newCol).isAlive()) {
+                aliveNeighbours++;
+            }
+        }
+
+        return aliveNeighbours;
+    }
+
     public boolean areAllCellsDead() {
         for (List<Cell> row : cells) {
             for (Cell cell : row) {

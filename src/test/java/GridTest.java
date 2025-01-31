@@ -35,8 +35,16 @@ public class GridTest {
     }
 
     @Test
-    public void testAllCellsNotDead_WhenGridInitializedWithSeedPercentage() {
-        Grid grid = new Grid(1, 1, 100);
+    public void testAllCellsDead_WhenUpdatingGrid_With1AliveCell() {
+        Grid grid = new Grid(10, 10, 1);
+        grid.updateGrid();
+        assertTrue(grid.areAllCellsDead());
+    }
+
+    @Test
+    public void testAllCellsNotDead_WhenUpdatingGrid_WithAllAliveCells() {
+        Grid grid = new Grid(10, 10, 100);
+        grid.updateGrid();
         assertFalse(grid.areAllCellsDead());
     }
 }
