@@ -4,6 +4,8 @@ import org.swiggy.Grid;
 import org.swiggy.exceptions.InvalidGridSizeException;
 import org.swiggy.exceptions.InvalidSeedPercentageException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,5 +48,36 @@ public class GridTest {
         Grid grid = new Grid(10, 10, 100);
         grid.updateGrid();
         assertFalse(grid.areAllCellsDead());
+    }
+
+    @Test
+    public void testDisplayWhenAllCellsAlive() {
+        Grid grid = new Grid(2, 2, 100);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
+
+        grid.display();
+
+        String expectedOutput = "* * \n* * \n";
+        assertEquals(expectedOutput, outContent.toString());
+
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void testDisplayWhenAllCellsDead() {
+        Grid grid = new Grid(2, 2, 25);
+        grid.updateGrid();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
+
+        grid.display();
+
+        String expectedOutput = "- - \n- - \n";
+        assertEquals(expectedOutput, outContent.toString());
+
+        System.setOut(originalOut);
     }
 }

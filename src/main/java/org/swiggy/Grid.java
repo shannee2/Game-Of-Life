@@ -100,4 +100,13 @@ public class Grid {
         }
         return true;
     }
+
+    public void display(){
+        for (List<Cell> row : cells) {
+            for (Cell cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
 }
