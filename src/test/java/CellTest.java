@@ -17,4 +17,11 @@ public class CellTest {
         cell.makeAlive();
         assertTrue(cell.isAlive());
     }
+
+    @Test
+    public void testCellToStringIfAlive() {
+        Cell cell = new Cell();
+        cell.makeAlive();
+        assertEquals("*", cell.toString());
+    }
 }
