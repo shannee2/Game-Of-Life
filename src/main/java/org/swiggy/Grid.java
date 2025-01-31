@@ -1,5 +1,7 @@
 package org.swiggy;
 
+import org.swiggy.exceptions.InvalidSeedPercentageException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,9 @@ public class Grid {
 
 
     public Grid(int rows, int cols, int seedPercentage) {
+        if(seedPercentage<=0){
+            throw new InvalidSeedPercentageException();
+        }
         if (rows <= 0 ||cols <= 0) {
             throw new org.swiggy.exceptions.InvalidGridSizeException();
         }
