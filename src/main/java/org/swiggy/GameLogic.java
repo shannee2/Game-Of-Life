@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class GameLogic {
-    Grid grid;
+    private final Grid grid;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
 

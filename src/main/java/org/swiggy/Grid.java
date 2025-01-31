@@ -108,7 +108,7 @@ public class Grid {
             }
             System.out.println();
         }
-        System.out.println("-------------------------------------------------");
+        System.out.println(Constants.SEPERATOR.getRepresentation());
 
     }
 }

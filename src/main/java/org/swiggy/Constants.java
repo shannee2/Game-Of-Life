@@ -1,12 +1,13 @@
 package org.swiggy;
 
-public enum Characters {
+public enum Constants {
     ALIVE("*"),
-    DEAD("-");
+    DEAD("-"),
+    SEPERATOR("-----------------------------------------------------------");
 
     private final String representation;
 
-    Characters(String representation) {
+    Constants(String representation) {
         this.representation = representation;
     }
 
