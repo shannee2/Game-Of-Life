@@ -24,4 +24,10 @@ public class CellTest {
         cell.makeAlive();
         assertEquals("*", cell.toString());
     }
+
+    @Test
+    public void testCellTOStringIfDead() {
+        Cell cell = new Cell();
+        assertEquals("-", cell.toString());
+    }
 }
