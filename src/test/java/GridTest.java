@@ -33,4 +33,10 @@ public class GridTest {
     public void testThrowException_WhenSeedPercentageIsZero() {
         assertThrows(InvalidSeedPercentageException.class, () -> new Grid(1, 1, 0));
     }
+
+    @Test
+    public void testAllCellsNotDead_WhenGridInitializedWithSeedPercentage() {
+        Grid grid = new Grid(1, 1, 100);
+        assertFalse(grid.areAllCellsDead());
+    }
 }
