@@ -10,22 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GridTest {
     @Test
     public void testThrowException_WhenGridInitializedWithNegativeRows() {
-        assertThrows(InvalidGridSizeException.class, () -> new Grid(-1, 1));
+        assertThrows(InvalidGridSizeException.class, () -> new Grid(-1, 1,10));
     }
 
     @Test
     public void testThrowException_WhenGridInitializedWithNegativeCols() {
-        assertThrows(InvalidGridSizeException.class, () -> new Grid(1, -1));
+        assertThrows(InvalidGridSizeException.class, () -> new Grid(1, -1,10));
     }
 
     @Test
     public void testGridCreation() {
-        assertDoesNotThrow(()->new Grid(1,1));
-    }
-
-    @Test
-    public void testAllCellsDeadInitially(){
-        Grid grid = new Grid(2,2);
-        assertTrue(grid.areAllCellsDead());
+        assertDoesNotThrow(()->new Grid(1,1,10));
     }
 }

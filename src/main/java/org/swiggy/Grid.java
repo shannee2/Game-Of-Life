@@ -6,7 +6,8 @@ import java.util.List;
 public class Grid {
     List<List<Cell>> cells;
 
-    public Grid(int rows, int cols) {
+
+    public Grid(int rows, int cols, int seedPercentage) {
         if (rows <= 0 ||cols <= 0) {
             throw new org.swiggy.exceptions.InvalidGridSizeException();
         }
