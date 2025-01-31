@@ -22,4 +22,10 @@ public class GridTest {
     public void testGridCreation() {
         assertDoesNotThrow(()->new Grid(1,1));
     }
+
+    @Test
+    public void testAllCellsDeadInitially(){
+        Grid grid = new Grid(2,2);
+        assertTrue(grid.areAllCellsDead());
+    }
 }

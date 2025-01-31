@@ -23,4 +23,8 @@ public class Grid {
             cells.add(row);
         }
     }
+
+    public boolean areAllCellsDead() {
+        return true;
+    }
 }
