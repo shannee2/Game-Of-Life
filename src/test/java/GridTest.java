@@ -18,4 +18,8 @@ public class GridTest {
         assertThrows(InvalidGridSizeException.class, () -> new Grid(1, -1));
     }
 
+    @Test
+    public void testGridCreation() {
+        assertDoesNotThrow(()->new Grid(1,1));
+    }
 }
