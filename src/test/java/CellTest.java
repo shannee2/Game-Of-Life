@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.swiggy.Cell;
-import org.swiggy.Constants;
+import org.swiggy.ConsoleConst;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,12 +23,12 @@ public class CellTest {
     public void testCellToStringIfAlive() {
         Cell cell = new Cell();
         cell.makeAlive();
-        assertEquals(Constants.ALIVE.getRepresentation(), cell.toString());
+        assertEquals(ConsoleConst.ALIVE.getRepresentation(), cell.toString());
     }
 
     @Test
     public void testCellToStringIfDead() {
         Cell cell = new Cell();
-        assertEquals(Constants.DEAD.getRepresentation(), cell.toString());
+        assertEquals(ConsoleConst.DEAD.getRepresentation(), cell.toString());
     }
 }
