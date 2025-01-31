@@ -27,12 +27,7 @@ public class Grid {
         List<Cell> allCells = new ArrayList<>();
 
         for (int i = 0; i < totalCells; i++) {
-            if (aliveCells > 0) {
-                allCells.add(new Cell(true));
-                aliveCells--;
-            } else {
-                allCells.add(new Cell(false));
-            }
+            allCells.add(new Cell(i < aliveCells));
         }
 
         Collections.shuffle(allCells);
@@ -40,13 +35,9 @@ public class Grid {
         for (int i = 0; i < rows; i++) {
             List<Cell> cellRow = new ArrayList<>();
             for (int j = 0; j < cols; j++) {
-                cellRow.add(allCells.removeFirst());
+                cellRow.add(allCells.remove(0));
             }
             cells.add(cellRow);
-        }
-
-        for (List<Cell> row : cells) {
-            Collections.shuffle(row);
         }
     }
 
