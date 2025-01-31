@@ -10,4 +10,11 @@ public class CellTest {
         Cell cell = new Cell();
         assertFalse(cell.isAlive());
     }
+
+    @Test
+    public void testAliveCell() {
+        Cell cell = new Cell();
+        cell.makeAlive();
+        assertTrue(cell.isAlive());
+    }
 }
