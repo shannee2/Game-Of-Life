@@ -1,6 +1,6 @@
 package org.swiggy;
 
-public enum ConsoleConst {
+public enum ConsoleMessages {
     ALIVE("*"),
     DEAD("-"),
     SEPERATOR("-----------------------------------------------------------"),
@@ -14,7 +14,7 @@ public enum ConsoleConst {
 
     private final String representation;
 
-    ConsoleConst(String representation) {
+    ConsoleMessages(String representation) {
         this.representation = representation;
     }
 

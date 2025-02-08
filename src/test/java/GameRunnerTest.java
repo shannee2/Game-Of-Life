@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.swiggy.ConsoleConst;
+import org.swiggy.ConsoleMessages;
 import org.swiggy.GameRunner;
 
 import java.io.ByteArrayInputStream;
@@ -26,9 +26,9 @@ public class GameRunnerTest {
         GameRunner.main(new String[]{});
 
         String output = outContent.toString();
-        assertTrue(output.contains(ConsoleConst.GRID_ROW_INPUT.getRepresentation()));
-        assertTrue(output.contains(ConsoleConst.GRID_COLUMN_INPUT.getRepresentation()));
-        assertTrue(output.contains(ConsoleConst.SEED_PERCENTAGE_INPUT.getRepresentation()));
+        assertTrue(output.contains(ConsoleMessages.GRID_ROW_INPUT.getRepresentation()));
+        assertTrue(output.contains(ConsoleMessages.GRID_COLUMN_INPUT.getRepresentation()));
+        assertTrue(output.contains(ConsoleMessages.SEED_PERCENTAGE_INPUT.getRepresentation()));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class GameRunnerTest {
         GameRunner.main(new String[]{});
 
         String output = outContent.toString();
-        assertTrue(output.contains(ConsoleConst.INVALID_SEED_PERCENTAGE_ERROR.getRepresentation()));
+        assertTrue(output.contains(ConsoleMessages.INVALID_SEED_PERCENTAGE_ERROR.getRepresentation()));
     }
 
     @Test
@@ -50,6 +50,6 @@ public class GameRunnerTest {
         GameRunner.main(new String[]{});
 
         String output = outContent.toString();
-        assertTrue(output.contains(ConsoleConst.INVALID_GRID_SIZE_ERROR.getRepresentation()));
+        assertTrue(output.contains(ConsoleMessages.INVALID_GRID_SIZE_ERROR.getRepresentation()));
     }
 }

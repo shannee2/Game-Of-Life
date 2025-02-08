@@ -1,9 +1,9 @@
 package org.swiggy.exceptions;
 
-import org.swiggy.ConsoleConst;
+import org.swiggy.ConsoleMessages;
 
 public class InvalidSeedPercentageException extends IllegalArgumentException {
     public InvalidSeedPercentageException() {
-        super(ConsoleConst.INVALID_SEED_PERCENTAGE_ERROR.getRepresentation());
+        super(ConsoleMessages.INVALID_SEED_PERCENTAGE_ERROR.getRepresentation());
     }
 }

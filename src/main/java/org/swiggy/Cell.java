@@ -25,6 +25,6 @@ public class Cell {
 
     @Override
     public String toString() {
-        return isAlive ? ConsoleConst.ALIVE.getRepresentation() : ConsoleConst.DEAD.getRepresentation();
+        return isAlive ? ConsoleMessages.ALIVE.getRepresentation() : ConsoleMessages.DEAD.getRepresentation();
     }
 }

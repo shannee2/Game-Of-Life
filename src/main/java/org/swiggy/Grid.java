@@ -47,7 +47,7 @@ public class Grid {
 
         for (int i = 0; i < cells.size(); i++) {
             for (int j = 0; j < cells.get(i).size(); j++) {
-                int aliveNeighbours = getAliveNeighbours(i, j);
+                int aliveNeighbours = countAliveNeighbours(i, j);
                 if(aliveNeighbours < 2 || aliveNeighbours > 3){
                     indexesToKill.add(new int[]{i, j});
                 }else{
@@ -64,7 +64,7 @@ public class Grid {
         }
     }
 
-    private int getAliveNeighbours(int row, int col) {
+    private int countAliveNeighbours(int row, int col) {
         int aliveNeighbours = 0;
         int[][] directions = {
                 {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // Vertical and horizontal neighbors
@@ -100,7 +100,7 @@ public class Grid {
             }
             System.out.println();
         }
-        System.out.println(ConsoleConst.SEPERATOR.getRepresentation());
+        System.out.println(ConsoleMessages.SEPERATOR.getRepresentation());
 
     }
 }

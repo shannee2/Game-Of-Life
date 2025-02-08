@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.swiggy.Cell;
 import org.swiggy.GameLogic;
 import org.swiggy.Grid;
 import org.swiggy.exceptions.InvalidGridSizeException;
@@ -7,9 +8,12 @@ import org.swiggy.exceptions.InvalidSeedPercentageException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.spy;
 
 public class GridTest {
     @Test
