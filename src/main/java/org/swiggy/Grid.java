@@ -100,7 +100,5 @@ public class Grid {
             }
             System.out.println();
         }
-        System.out.println(ConsoleMessages.SEPERATOR.getRepresentation());
-
     }
 }

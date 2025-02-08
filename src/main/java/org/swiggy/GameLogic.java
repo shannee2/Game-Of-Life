@@ -18,6 +18,7 @@ public class GameLogic {
         scheduler.scheduleAtFixedRate(() -> {
             grid.update();
             grid.display();
+            System.out.println(ConsoleMessages.SEPERATOR.getRepresentation());
             if(grid.areAllCellsDead()){
                 scheduler.shutdown();
             }
