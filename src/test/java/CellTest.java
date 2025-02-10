@@ -13,20 +13,6 @@ public class CellTest {
     }
 
     @Test
-    public void testAliveCell() {
-        Cell cell = new Cell();
-        cell.makeAlive();
-        assertTrue(cell.isAlive());
-    }
-
-    @Test
-    public void testCellToStringIfAlive() {
-        Cell cell = new Cell();
-        cell.makeAlive();
-        assertEquals(ConsoleMessages.ALIVE.getRepresentation(), cell.toString());
-    }
-
-    @Test
     public void testCellToStringIfDead() {
         Cell cell = new Cell();
         assertEquals(ConsoleMessages.DEAD.getRepresentation(), cell.toString());

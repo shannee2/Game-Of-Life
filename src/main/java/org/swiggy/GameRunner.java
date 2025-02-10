@@ -16,7 +16,7 @@ public class GameRunner {
             int cols = sc.nextInt();
             System.out.println(ConsoleMessages.SEED_PERCENTAGE_INPUT.getRepresentation());
             int seedPercentage = sc.nextInt();
-            GameLogic gameLogic = new GameLogic(rows, cols, seedPercentage);
+            GameOfLife gameLogic = new GameOfLife(rows, cols, seedPercentage);
             gameLogic.startGame();
         } catch (Exception e) {
             System.out.println(e.getMessage());

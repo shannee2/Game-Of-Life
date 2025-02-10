@@ -4,12 +4,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class GameLogic {
+public class GameOfLife {
     private final Grid grid;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
 
-    public GameLogic(int rows, int cols, int seedPercentage) {
+    public GameOfLife(int rows, int cols, int seedPercentage) {
         this.grid = new Grid(rows, cols, seedPercentage);
     }
 
