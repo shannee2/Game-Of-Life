@@ -6,9 +6,10 @@ import org.swiggy.exceptions.InvalidSeedPercentageException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Grid {
-    List<List<Cell>> grid;
+    private List<List<Cell>> cells;
 
     public Grid(int rows, int cols, int seedPercentage) {
         if(seedPercentage <= 0 || seedPercentage > 100){
@@ -20,12 +21,17 @@ public class Grid {
         initializeGrid(rows, cols, seedPercentage);
     }
 
-//    Another constructor
+    public Grid(List<List<Cell>> predefinedCells) {
+        if (predefinedCells == null || predefinedCells.isEmpty()) {
+            throw new IllegalArgumentException("Cells cannot be null or empty");
+        }
+        this.cells = predefinedCells;
+    }
 
     private void initializeGrid(int rows, int cols, int seedPercentage) {
         int totalCells = rows * cols;
         int aliveCells = (totalCells * seedPercentage) / 100;
-        grid = new ArrayList<>();
+        cells = new ArrayList<>();
         List<Cell> allCells = new ArrayList<>();
 
         for (int i = 0; i < totalCells; i++) {
@@ -39,21 +45,21 @@ public class Grid {
             for (int j = 0; j < cols; j++) {
                 cellRow.add(allCells.remove(0));
             }
-            grid.add(cellRow);
+            cells.add(cellRow);
         }
     }
 
     public void update() {
         List<List<Cell>> tempGrid = new ArrayList<>();
 
-        for (int i = 0; i < grid.size(); i++) {
+        for (int i = 0; i < cells.size(); i++) {
             List<Cell> row = new ArrayList<>();
-            for (int j = 0; j < grid.get(i).size(); j++) {
-                row.add(grid.get(i).get(j).getNextState(getAllNeighbours(i,j)));
+            for (int j = 0; j < cells.get(i).size(); j++) {
+                row.add(cells.get(i).get(j).getNextState(getAllNeighbours(i,j)));
             }
             tempGrid.add(row);
         }
-        this.grid = tempGrid;
+        this.cells = tempGrid;
     }
 
     private List<Cell> getAllNeighbours(int row, int col) {
@@ -66,8 +72,8 @@ public class Grid {
         for (int[] direction : directions) {
             int newRow = row + direction[0];
             int newCol = col + direction[1];
-            if (newRow >= 0 && newRow < grid.size() && newCol >= 0 && newCol < grid.get(newRow).size()) {
-                neighbours.add(grid.get(newRow).get(newCol));
+            if (newRow >= 0 && newRow < cells.size() && newCol >= 0 && newCol < cells.get(newRow).size()) {
+                neighbours.add(cells.get(newRow).get(newCol));
             }
         }
 
@@ -75,7 +81,7 @@ public class Grid {
     }
 
     public boolean areAllCellsDead() {
-        for (List<Cell> row : grid) {
+        for (List<Cell> row : cells) {
             for (Cell cell : row) {
                 if (cell.isAlive()) {
                     return false;
@@ -86,11 +92,30 @@ public class Grid {
     }
 
     public void display(){
-        for (List<Cell> row : grid) {
+        for (List<Cell> row : cells) {
             for (Cell cell : row) {
                 System.out.print(cell + " ");
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Grid other = (Grid) obj;
+        if (cells.size() != other.cells.size()) return false;
+        if (cells.getFirst().size() != other.cells.getFirst().size()) return false;
+
+        for (int i = 0; i < cells.size(); i++) {
+            if (!cells.get(i).equals(other.cells.get(i))) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cells);
     }
 }
