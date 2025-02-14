@@ -23,7 +23,7 @@ public class Grid {
 
     public Grid(List<List<Cell>> predefinedCells) {
         if (predefinedCells == null || predefinedCells.isEmpty()) {
-            throw new IllegalArgumentException("Cells cannot be null or empty");
+            throw new InvalidGridSizeException();
         }
         this.cells = predefinedCells;
     }
@@ -43,7 +43,7 @@ public class Grid {
         for (int i = 0; i < rows; i++) {
             List<Cell> cellRow = new ArrayList<>();
             for (int j = 0; j < cols; j++) {
-                cellRow.add(allCells.remove(0));
+                cellRow.add(allCells.removeFirst());
             }
             cells.add(cellRow);
         }
@@ -65,8 +65,8 @@ public class Grid {
     private List<Cell> getAllNeighbours(int row, int col) {
         List<Cell> neighbours = new ArrayList<>();
         int[][] directions = {
-                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // Vertical and horizontal neighbors
-                {-1, -1}, {-1, 1}, {1, -1}, {1, 1} // Diagonal neighbors
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, // vertical and horizontal neighbors
+                {-1, -1}, {-1, 1}, {1, -1}, {1, 1} // diagonal neighbors
         };
 
         for (int[] direction : directions) {

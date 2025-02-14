@@ -8,6 +8,8 @@ public enum ConsoleMessages {
     GRID_ROW_INPUT("Enter the number of rows in the grid: "),
     GRID_COLUMN_INPUT("Enter the number of columns in the grid: "),
     SEED_PERCENTAGE_INPUT("Enter the percentage of cells to be alive: "),
+    ENTER_FOR_NEXT_GENERATION("Press Enter for next generation or type 'exit' to quit:"),
+    GAME_OVER("Game over."),
 
     INVALID_SEED_PERCENTAGE_ERROR("Seed percentage must be between 0 and 100."),
     INVALID_GRID_SIZE_ERROR("Grid rows and column must be positive.");

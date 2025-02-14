@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameRunnerTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
 
     @BeforeEach
     public void setUpStreams() {
@@ -51,5 +50,19 @@ public class GameRunnerTest {
 
         String output = outContent.toString();
         assertTrue(output.contains(ConsoleMessages.INVALID_GRID_SIZE_ERROR.getRepresentation()));
+    }
+
+    @Test
+    public void testInvalidSeedPercentage() {
+        System.setIn(new ByteArrayInputStream("5\n5\n150\n".getBytes()));
+        GameRunner.main(new String[]{});
+        assertTrue(outContent.toString().contains(ConsoleMessages.INVALID_SEED_PERCENTAGE_ERROR.getRepresentation()));
+    }
+
+    @Test
+    public void testInvalidGridSize() {
+        System.setIn(new ByteArrayInputStream("-1\n5\n50\n".getBytes()));
+        GameRunner.main(new String[]{});
+        assertTrue(outContent.toString().contains(ConsoleMessages.INVALID_GRID_SIZE_ERROR.getRepresentation()));
     }
 }

@@ -1,9 +1,6 @@
 package org.swiggy;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class GameRunner {
     private final Grid grid;
@@ -16,14 +13,15 @@ public class GameRunner {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             grid.display();
-            System.out.println("Press Enter for next generation or type 'exit' to quit:");
+            System.out.println(ConsoleMessages.ENTER_FOR_NEXT_GENERATION.getRepresentation());
             String input = scanner.nextLine();
             if ("exit".equalsIgnoreCase(input)) {
+                System.out.println(ConsoleMessages.GAME_OVER.getRepresentation());
                 break;
             }
             grid.update();
             if (grid.areAllCellsDead()) {
-                System.out.println("All cells are dead. Game over.");
+                System.out.println(ConsoleMessages.GAME_OVER.getRepresentation());
                 break;
             }
         }
@@ -38,7 +36,7 @@ public class GameRunner {
             int cols = sc.nextInt();
             System.out.println(ConsoleMessages.SEED_PERCENTAGE_INPUT.getRepresentation());
             int seedPercentage = sc.nextInt();
-            sc.nextLine(); // Consume newline
+            sc.nextLine();
 
             GameRunner game = new GameRunner(rows, cols, seedPercentage);
             game.startGame();
