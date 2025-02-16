@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.swiggy.Cell;
+import org.swiggy.CellState;
 import org.swiggy.Grid;
 import org.swiggy.exceptions.InvalidGridSizeException;
 import org.swiggy.exceptions.InvalidSeedPercentageException;
@@ -88,18 +89,18 @@ public class GridTest {
     @Test
     public void test3X3Grid() {
         List<List<Cell>> initialCells = Arrays.asList(
-                Arrays.asList(new Cell(false), new Cell(true), new Cell(false)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(false)),
-                Arrays.asList(new Cell(false), new Cell(false), new Cell(false))
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD))
         );
 
         Grid grid = new Grid(initialCells);
         grid.update();
 
         List<List<Cell>> firstUpdateCells = Arrays.asList(
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(false))
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD))
         );
         Grid expectedGrid = new Grid(firstUpdateCells);
 
@@ -109,11 +110,11 @@ public class GridTest {
     @Test
     public void test5X5Grid_WithMultipleUpdates() {
         List<List<Cell>> initialCells = Arrays.asList(
-                Arrays.asList(new Cell(false), new Cell(true), new Cell(true), new Cell(false), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(false), new Cell(false), new Cell(false)),
-                Arrays.asList(new Cell(false), new Cell(true), new Cell(false), new Cell(false), new Cell(true)),
-                Arrays.asList(new Cell(false), new Cell(false), new Cell(true), new Cell(true), new Cell(false)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(false), new Cell(true), new Cell(true))
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE))
         );
 
         Grid grid = new Grid(initialCells);
@@ -123,11 +124,11 @@ public class GridTest {
         grid.update();
 
         List<List<Cell>> firstUpdateCells = Arrays.asList(
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(true), new Cell(true), new Cell(false)),
-                Arrays.asList(new Cell(true), new Cell(false), new Cell(false), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(false), new Cell(true), new Cell(false)),
-                Arrays.asList(new Cell(true), new Cell(false), new Cell(false), new Cell(false), new Cell(false)),
-                Arrays.asList(new Cell(false), new Cell(true), new Cell(false), new Cell(true), new Cell(true))
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE))
         );
 
         Grid expectedGrid = new Grid(firstUpdateCells);
@@ -138,11 +139,11 @@ public class GridTest {
         grid.update();
 
         List<List<Cell>> secondUpdateCells = Arrays.asList(
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(true), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(false), new Cell(false), new Cell(false), new Cell(false), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true), new Cell(true), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(false), new Cell(false), new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(false), new Cell(true), new Cell(false), new Cell(false))
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.ALIVE), new Cell(CellState.DEAD), new Cell(CellState.DEAD))
         );
 
         expectedGrid = new Grid(secondUpdateCells);
@@ -152,8 +153,8 @@ public class GridTest {
     @Test
     public void testGridWithNoAliveCellsRemainsDead() {
         List<List<Cell>> deadCells = Arrays.asList(
-                Arrays.asList(new Cell(false), new Cell(false)),
-                Arrays.asList(new Cell(false), new Cell(false))
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.DEAD)),
+                Arrays.asList(new Cell(CellState.DEAD), new Cell(CellState.DEAD))
         );
 
         Grid grid = new Grid(deadCells);
@@ -164,8 +165,8 @@ public class GridTest {
     @Test
     public void testGridWithAllAliveCellsEvolves() {
         List<List<Cell>> aliveCells = Arrays.asList(
-                Arrays.asList(new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true))
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE))
         );
 
         Grid grid = new Grid(aliveCells);
@@ -177,8 +178,8 @@ public class GridTest {
         grid.update();
 
         List<List<Cell>> expectedCells = Arrays.asList(
-                Arrays.asList(new Cell(true), new Cell(true)),
-                Arrays.asList(new Cell(true), new Cell(true))
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE)),
+                Arrays.asList(new Cell(CellState.ALIVE), new Cell(CellState.ALIVE))
         );
         Grid expectedGrid = new Grid(expectedCells);
 

@@ -35,7 +35,8 @@ public class Grid {
         List<Cell> allCells = new ArrayList<>();
 
         for (int i = 0; i < totalCells; i++) {
-            allCells.add(new Cell(i < aliveCells));
+            CellState state = i < aliveCells ? CellState.ALIVE : CellState.DEAD;
+            allCells.add(new Cell(state));
         }
 
         Collections.shuffle(allCells);

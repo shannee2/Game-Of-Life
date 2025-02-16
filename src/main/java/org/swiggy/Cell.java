@@ -3,24 +3,24 @@ package org.swiggy;
 import java.util.List;
 
 public class Cell {
-    private final boolean isAlive;
+    private final CellState state;
 
-    public Cell(boolean isAlive) {
-        this.isAlive = isAlive;
+    public Cell(CellState state) {
+        this.state = state;
     }
 
     public Cell() {
-        this.isAlive = false;
+        this.state = CellState.DEAD;
     }
 
     public boolean isAlive() {
-        return isAlive;
+        return state == CellState.ALIVE;
     }
 
     public Cell getNextState(List<Cell> neighbourCells){
         int aliveNeighbours = countAliveNeighbours(neighbourCells);
-        boolean beAlive = aliveNeighbours == 2 || aliveNeighbours == 3;
-        if(beAlive == this.isAlive) {
+        CellState beAlive = (aliveNeighbours == 2 || aliveNeighbours == 3) ? CellState.ALIVE : CellState.DEAD;
+        if(beAlive == this.state) {
             return this;
         }
         return new Cell(beAlive);
@@ -29,7 +29,7 @@ public class Cell {
     private int countAliveNeighbours(List<Cell> neighbourCells){
         int aliveNeighbours = 0;
         for(Cell cell: neighbourCells){
-            if(cell.isAlive){
+            if(cell.isAlive()){
                 aliveNeighbours++;
             }
         }
@@ -38,7 +38,7 @@ public class Cell {
 
     @Override
     public String toString() {
-        return isAlive ? ConsoleMessages.ALIVE.getRepresentation() : ConsoleMessages.DEAD.getRepresentation();
+        return this.isAlive() ? ConsoleMessages.ALIVE.getRepresentation() : ConsoleMessages.DEAD.getRepresentation();
     }
 
     @Override
@@ -46,11 +46,6 @@ public class Cell {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Cell other = (Cell) obj;
-        return this.isAlive == other.isAlive;
-    }
-
-    @Override
-    public int hashCode() {
-        return Boolean.hashCode(isAlive);
+        return this.state == other.state;
     }
 }
