@@ -19,12 +19,11 @@ public class Cell {
 
     public Cell getNextState(List<Cell> neighbourCells){
         int aliveNeighbours = countAliveNeighbours(neighbourCells);
-
-        if(aliveNeighbours < 2 || aliveNeighbours > 3){
-            return new Cell(false);
+        boolean beAlive = aliveNeighbours == 2 || aliveNeighbours == 3;
+        if(beAlive == this.isAlive) {
+            return this;
         }
-
-        return new Cell(true);
+        return new Cell(beAlive);
     }
 
     private int countAliveNeighbours(List<Cell> neighbourCells){
